@@ -58,7 +58,11 @@ end
 ````
 
 Now I can query the git repo(which is auto updating) like so with `Article.all`
-or just the published items `Article.all(published: true)`
+or just the published items 
+
+```ruby
+Article.all(published: true)
+```
 
 
 #Conclusion
