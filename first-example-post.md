@@ -36,7 +36,7 @@ server @ port 9000
 
 #Git + Datamapper
 
-I've created (dm-gitfs-adapter)[https://github.com/Ortuna/dm-gitfs-adapter] for 
+I've created [dm-gitfs-adapter](https://github.com/Ortuna/dm-gitfs-adapter) for 
 another project, but this was a good use case for it.  Given a list of markdown
 files, I want to be able to query them just like any other persistance engine.
 
