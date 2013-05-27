@@ -58,6 +58,7 @@ files, I want to be able to query them just like any other persistance engine.
 Now I can query the git repo(which is auto updating) like so with `Article.all`
 or just the published items `Article.all(published: true)`
 
+
 #Conclusion
 The goal is to write atleast one blog post.  Or a collection of things I've done
 during the week and consolidate them.
