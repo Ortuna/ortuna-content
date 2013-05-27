@@ -17,18 +17,18 @@ updates the 'content' repository on the server.
 
 #Post hook server
 ```ruby
-require 'sinatra'
-require 'grit'
+  require 'sinatra'
+  require 'grit'
 
-set :bind, '0.0.0.0'
-set :port, 9000
+  set :bind, '0.0.0.0'
+  set :port, 9000
 
-get '/' do
-  Dir.chdir '../content'
-  g = Grit::Repo.new('../content')
-  g.git.reset({:hard => true}, 'HEAD')
-  g.git.pull({}, "origin", "master")
-end
+  get '/' do
+    Dir.chdir '../content'
+    g = Grit::Repo.new('../content')
+    g.git.reset({:hard => true}, 'HEAD')
+    g.git.pull({}, "origin", "master")
+  end
 ```
 
 As you can see, this server does a simple git pull on content when visiting the 
@@ -42,17 +42,17 @@ files, I want to be able to query them just like any other persistance engine.
 
 ##Article Model
 ```ruby
-class Article
-  include DataMapper::Gitfs::Resource
-  resource_type :markdown
-  property :title, String
-  property :date, Date
-  property :published, Boolean
+  class Article
+    include DataMapper::Gitfs::Resource
+    resource_type :markdown
+    property :title, String
+    property :date, Date
+    property :published, Boolean
 
-  def uri
-    base_path.gsub(/\.md/, '')
-  end  
-end
+    def uri
+      base_path.gsub(/\.md/, '')
+    end  
+  end
 ```
 
 Now I can query the git repo(which is auto updating) like so with `Article.all`
