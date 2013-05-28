@@ -17,16 +17,20 @@ updates the 'content' repository on the server.
 
 #Post hook server
 ```ruby
-
 require 'sinatra'
 require 'grit'
 
 set :bind, '0.0.0.0'
 set :port, 9000
 
-get '/' do
-  Dir.chdir '../content'
-  g = Grit::Repo.new('../content')
+post '/' do
+  current_directory = Dir.pwd
+  git_pull('/home/ortuna/content')
+end
+
+def git_pull(path)
+  Dir.chdir path
+  g = Grit::Repo.new(path)
   g.git.reset({:hard => true}, 'HEAD')
   g.git.pull({}, "origin", "master")
 end
@@ -43,7 +47,6 @@ files, I want to be able to query them just like any other persistance engine.
 
 ##Article Model
 ```ruby
-
 class Article
   include DataMapper::Gitfs::Resource
   resource_type :markdown
@@ -68,3 +71,6 @@ Article.all(published: true)
 #Conclusion
 The goal is to write atleast one blog post.  Or a collection of things I've done
 during the week and consolidate them.
+
+[edit] Updated post hook script above.  I should start using cache for git pull
+requests.
