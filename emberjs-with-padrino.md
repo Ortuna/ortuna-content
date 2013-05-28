@@ -18,11 +18,11 @@ in one single javascript file.  This would make it a nightmare to
 maintain!  So I used the basic structure of:
 
 ```
-public/javascripts/lib
-public/javascripts/app
- - controllers
- - views
- - models
+  public/javascripts/lib
+  public/javascripts/app
+   - controllers
+   - views
+   - models
 ```
 
 `controllers` and `models` would contain the individual controller and
@@ -92,7 +92,8 @@ I had a partial for these javascript libraries:
     function basename(path, suffix) {
       var b = path.replace(/^.*[\/\\]/g, '');
 
-      if (typeof(suffix) == 'string' && b.substr(b.length - suffix.length) == suffix) {
+      if (typeof(suffix) == 'string' 
+       && b.substr(b.length - suffix.length) == suffix) {
         b = b.substr(0, b.length - suffix.length);
       }
 
@@ -106,10 +107,11 @@ I had a partial for these javascript libraries:
 
 ##Ember.js javascript loading
 The js_asset loading part of the template is straight forward.
-```haml
-- if @js_assets
-  - @js_assets.each do |asset|
-    = javascript_include_tag asset
+
+```
+  - if @js_assets
+    - @js_assets.each do |asset|
+      = javascript_include_tag asset
 ```
 outputs the `javascript_include_tag asset` for every asset.  This
 will load anything that is inside `public/javascripts/app/**/*.js`
