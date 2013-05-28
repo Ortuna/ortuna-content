@@ -18,6 +18,7 @@ in one single javascript file.  This would make it a nightmare to
 maintain!  So I used the basic structure of:
 
 ```
+
   public/javascripts/lib
   public/javascripts/app
    - controllers
@@ -34,6 +35,7 @@ In the controller I had some bit of code to find all these files via
 `Dir.glob`.
 
 ```ruby
+
 ...
   private
   def js_assets
@@ -61,6 +63,7 @@ In the controller I had some bit of code to find all these files via
 Controller comprised of something like this:
 
 ```ruby
+
   get '/' do
     @js_assets  = js_assets
     @hbs_assets = handlebar_assets
@@ -73,6 +76,7 @@ Controller comprised of something like this:
 I had a partial for these javascript libraries:
 
 ```haml
+
 = javascript_include_tag 'lib/handlebars-1.0.0-rc.3.js'
 = javascript_include_tag 'lib/ember-latest.min.js'
 
@@ -109,6 +113,7 @@ I had a partial for these javascript libraries:
 The js_asset loading part of the template is straight forward.
 
 ```
+
   - if @js_assets
     - @js_assets.each do |asset|
       = javascript_include_tag asset
@@ -131,6 +136,7 @@ I should mention there are multiple ways of loading handlebars templates into
 Ember.js.  One being you embed your templates in the HTML of your Padrino view
 
 ```
+
 <script type="text/x-handlebars" id="index">
   <h1>People</h1>
 
@@ -147,6 +153,7 @@ The name of this template is `index`.
 Another way of doing this is what the script above does:
 
 ```
+
 Ember.TEMPLATES[templateName] = Ember.Handlebars.compile(data);
 ```
 
