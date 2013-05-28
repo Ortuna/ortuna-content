@@ -3,7 +3,6 @@ title: Ember.js With Padrino
 date: May 27, 2013
 published: true
 ----
-
 Recently I've been working on a project that is using Ember.js
 as the heart of the application.  It was a mix of a mini-API and
 a few controllers to serve up the front-end application.  This is
