@@ -33,7 +33,7 @@ In the controller I had some bit of code to find all these files via
 `Dir.glob`.
 
 ```ruby
-...
+  ...
   private
   def js_assets
     public_assets '**/*.js'
